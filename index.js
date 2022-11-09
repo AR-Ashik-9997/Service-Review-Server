@@ -42,6 +42,24 @@ async function connect() {
       res.send(result);    
          
     });
+    app.get("/all-reviews", async (req, res) => {
+      const query = {serviceId:req.query.serviceId}
+     const cursor= reviewCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);      
+    });
+    app.get("/user-reviews", async (req, res) => {
+      const query = {email:req.query.email}
+     const cursor= reviewCollection.find(query);
+      const result = await cursor.toArray();
+      res.send(result);      
+    });
+    app.get("/update-reviews/:id", async (req, res) => {
+      const updateId = req.params.id;
+      const filter={_id:ObjectId(updateId)}
+       const result = await reviewCollection.findOne(filter);
+       res.send(result);    
+    });
     app.put("/update-reviews/:userId", async (req, res) => {
       const id = req.params.userId;
       const filter={_id: ObjectId(id)};
@@ -59,7 +77,12 @@ async function connect() {
       const result = await reviewCollection.updateOne(filter,updateUser, option);
       res.send(result);     
     });
-    
+    app.delete("/review-delete/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: ObjectId(id) };
+      const result = await reviewCollection.deleteOne(query);
+      res.send(result);
+    });   
 
   } finally {
   }
