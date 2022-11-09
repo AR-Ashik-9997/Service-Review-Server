@@ -31,6 +31,17 @@ async function connect() {
       const result = await serviceCollection.findOne(filter);       
       res.send(result);
     });
+    app.post("/add-services", async (req, res) => {
+      const service = req.body;
+      const result = await serviceCollection.insertOne(service);
+      res.send(result);      
+    });
+    app.post("/add-review", async (req, res) => {
+      const review = req.body;
+      const result = await reviewCollection.insertOne(review);
+      res.send(result);    
+         
+    });
     
 
   } finally {
