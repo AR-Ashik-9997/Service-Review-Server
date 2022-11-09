@@ -21,6 +21,16 @@ async function connect() {
       const result = await serviceCollection.find({}).limit(3).toArray();
       res.send(result);
     });
+    app.get("/all-services", async (req, res) => {
+      const result = await serviceCollection.find({}).toArray();
+      res.send(result);
+    });
+    app.get("/details-services/:id", async (req, res) => {
+      const serviceId = req.params.id;
+      const filter={_id:ObjectId(serviceId)}
+      const result = await serviceCollection.findOne(filter);       
+      res.send(result);
+    });
     
 
   } finally {
