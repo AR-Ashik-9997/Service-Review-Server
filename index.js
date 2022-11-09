@@ -13,7 +13,20 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
   serverApi: ServerApiVersion.v1,
 });
+async function connect() {
+  try {
+    const serviceCollection = client.db("DeliveryServices").collection("services");
+    const reviewCollection = client.db("DeliveryServices").collection("reviews");
+    app.get("/services", async (req, res) => {
+      const result = await serviceCollection.find({}).limit(3).toArray();
+      res.send(result);
+    });
+    
 
+  } finally {
+  }
+}
+connect().catch((err) => console.error(err));
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);
