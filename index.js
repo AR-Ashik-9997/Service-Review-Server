@@ -42,6 +42,23 @@ async function connect() {
       res.send(result);    
          
     });
+    app.put("/update-reviews/:userId", async (req, res) => {
+      const id = req.params.userId;
+      const filter={_id: ObjectId(id)};
+      const user = req.body;      
+      const option = { upsert: true };
+      const updateUser = {
+        $set: {
+          image: user.image,
+          name: user.name,
+          serviceName: user.serviceName,
+          rating: user.rating,         
+          description: user.description,          
+        },
+      };     
+      const result = await reviewCollection.updateOne(filter,updateUser, option);
+      res.send(result);     
+    });
     
 
   } finally {
