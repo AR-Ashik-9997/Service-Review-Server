@@ -73,7 +73,7 @@ async function connect() {
     });
     app.get("/all-reviews", async (req, res) => {
       const query = { serviceId: req.query.serviceId };
-      const cursor = reviewCollection.find(query).sort({"date":-1});
+      const cursor = reviewCollection.find(query).sort({"time":-1});
       const result = await cursor.toArray();
       res.send(result);
 
