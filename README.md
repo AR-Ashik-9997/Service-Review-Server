@@ -1,6 +1,9 @@
 # Online Delivery Services
 
 # API Link
+
+Post Jwt: https://service-data.vercel.app/jwt 
+
 Get 3 Services: https://service-data.vercel.app/services
 
 Get All Services: https://service-data.vercel.app/all-services
@@ -11,7 +14,7 @@ Post Add Services: https://service-data.vercel.app/add-services
 
 Post Add Review: https://service-data.vercel.app/add-review
 
-Get All Review: https://service-data.vercel.app/all-reviews
+Get All Review by dynamic id: https://service-data.vercel.app/all-reviews/serviceId=${review_id}
 
 Get user review: https://service-data.vercel.app/user-reviews
 
